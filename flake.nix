@@ -1,56 +1,31 @@
 {
-  description = "WikiMusic API Spec flake";
   inputs = {
-    haskellNix.url = "github:input-output-hk/haskell.nix";
-    nixpkgs.follows = "haskellNix/nixpkgs-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    systems.url = "github:nix-systems/default";
   };
-
-  outputs = { self, nixpkgs, flake-utils, haskellNix }:
+  outputs = { systems, nixpkgs, ... }:
     let
-      supportedSystems =
-        [ "x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
-    in flake-utils.lib.eachSystem supportedSystems (system:
-      let
-        overlays = [
-          haskellNix.overlay
-          (final: prev: {
-            wikimusicApiSpecProject = final.haskell-nix.project' {
-              src = ./.;
-              compiler-nix-name = "ghc96";
-              shell.tools = {
-                cabal = { };
-                hlint = { };
-                haskell-language-server = { };
-              };
-              shell.buildInputs = with pkgs; [
-                gnumake
-                haskell-language-server
-                cachix
-                ormolu
-                nixfmt
-                statix
-                deadnix
-                jq
-                awscli2
-              ];
-            };
-          })
-        ];
-        pkgs = import nixpkgs {
-          inherit system overlays;
-          inherit (haskellNix) config;
+      eachSystem = f:
+        nixpkgs.lib.genAttrs (import systems)
+        (system: f nixpkgs.legacyPackages.${system});
+    in {
+      devShells = eachSystem (pkgs: {
+        default = pkgs.mkShell {
+          buildInputs = with pkgs; [
+            gnumake
+            haskell-language-server
+            cachix
+            ormolu
+            nixfmt
+            ghcid
+            statix
+            stack
+            deadnix
+            jq
+            awscli2
+          ];
         };
-        flake = pkgs.wikimusicApiSpecProject.flake { };
-      in flake // {
-        legacyPackages = pkgs;
-        packages.default = flake.packages."wikimusic-api-spec:lib:wikimusic-api-spec";
       });
-
-  nixConfig = {
-    extra-substituters = [ "https://cache.iog.io" ];
-    extra-trusted-public-keys =
-      [ "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=" ];
-    allow-import-from-derivation = "true";
-  };
+    };
 }
+

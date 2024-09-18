@@ -1,9 +1,0 @@
-
-source-repository-package
-  type: git
-  location: https://gitlab.com/jjba-projects/wikimusic-model-hs.git
-  tag: e82afaa7dddf1b8e836594ec731fe0966bb0cfa4
-  --sha256: 14d7WTTuOq8woG23XyumruJj3/uucK1DEyo51gollCU=
-
-packages: .
-    

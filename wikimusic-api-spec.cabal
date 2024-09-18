@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
 name:           wikimusic-api-spec
-version:        1.2.1.0
-description:    Please see the README at <https://gitlab.com/jjba-projects/wikimusic-api-spec>
-homepage:       https://gitlab.com/jjba-projects/wikimusic-api-spec
-bug-reports:    https://gitlab.com/jjba-projects/wikimusic-api-spec/-/issues
+version:        1.2.1.1
+description:    Please see the README at <https://github.com/jjba23/wikimusic-api-spec>
+homepage:       https://github.com/jjba23/wikimusic-api-spec
+bug-reports:    https://github.com/jjba23/wikimusic-api-spec/-/issues
 author:         Josep Bigorra
 maintainer:     Josep Bigorra <jjbigorra@gmail.com>
 copyright:      2023 Josep Bigorra
@@ -17,7 +17,7 @@ extra-source-files:
 
 source-repository head
   type: git
-  location: https://gitlab.com/jjba-projects/wikimusic-api-spec
+  location: https://github.com/jjba23/wikimusic-api-spec
   subdir: wikimusic-api-spec
 
 library
