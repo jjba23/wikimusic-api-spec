@@ -8,10 +8,7 @@ API Spec for WikiMusic's backend, the invite-only private knowledge sharing of m
 #+begin_html
 <div>
 <img src="https://img.shields.io/badge/Haskell-5D4F85?logo=haskell&logoColor=fff&style=plastic" alt="Haskell"/>
-<img src="https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=fff&style=plastic" alt="PostgreSQL"/>
-<img src="https://img.shields.io/badge/GNU%20Emacs-7F5AB6?logo=gnuemacs&logoColor=fff&style=plastic" alt="GNU Emacs"/>
-<img src="https://img.shields.io/badge/NixOS-5277C3?logo=nixos&logoColor=fff&style=plastic" alt="NixOS"/>
-<img src="https://img.shields.io/badge/Redis-DC382D?logo=redis&logoColor=fff&style=plastic" alt="Redis"/>
+<img src="https://img.shields.io/badge/Nix-5277C3?logo=nixos&logoColor=fff&style=plastic" alt="Nix"/>
 </div>
 #+end_html
 
